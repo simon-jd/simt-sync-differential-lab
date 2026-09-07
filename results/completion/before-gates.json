@@ -1,0 +1,7 @@
+{
+  "A_cancelled_batch_returncode": 1,
+  "A_runs_started_after_cancellation": 1,
+  "A_rehashed_wrong_model_revision_accepted": true,
+  "C_wrong_cpu_clock_accepted": true,
+  "C_fractional_instruction_counter_truncated_to": 1
+}

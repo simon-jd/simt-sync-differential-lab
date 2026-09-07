@@ -1,0 +1,1 @@
+bash scripts/container.sh bash scripts/synthesize.sh

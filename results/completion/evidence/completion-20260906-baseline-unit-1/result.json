@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "name": "completion-20260906-baseline-unit-1",
+  "command": [
+    "./barrier",
+    "1"
+  ],
+  "cwd": "/workspace/build-baseline32/hw/unittest/barrier",
+  "timeout_seconds": 30,
+  "exit_code": 1,
+  "status": "semantic_failure",
+  "started_unix": 1788753288.8581474,
+  "input_sha256": {
+    "build-baseline32/hw/unittest/barrier/barrier": "eb2ff4f987ac9e571f42beb3e948f1255b3715a952e2a75491f3da438807169d",
+    "build-baseline32/config.mk": "82d090e499ebe4a605238357209af0e1b30996e2af0cc0ba61dc3c91006d2980",
+    "build-baseline32/sw/VX_config.h": "379a6993e572e4864fb611644cc3d935b13a3632c6222098a07641c457dbf729",
+    "build-baseline32/sw/runtime/librtlsim.so": "4f0719ac95b21263ee69a95091dc661a0146e8d660255f0dead3f673f5a5390d",
+    "build-baseline32/sw/runtime/libsimx.so": "d42c38e5c0aa66bd16452d0b6c469b48c0ca6b73e27e78e148e4d1b97db62adf",
+    "build-baseline32/sw/runtime/libvortex-rtlsim.so": "d7b81b12a5aa9f727aaa16b16b8100823936ac4ecd159a3a6068881ac05bbcdd",
+    "build-baseline32/sw/runtime/libvortex-simx.so": "7092637ca2038b8ccea6d05c1a7392383697006dd029d5232c92c25f828e9b76",
+    "build-baseline32/sw/runtime/libvortex.so": "71343202637191d93fed7eb222e07486274632afdb1befd49d86add26196812b",
+    "overlays/ci/testcases/sync_semantics.yaml": "c18f6a87dc230d4fd3261d5492e7ae1dc78e434ad7f9612a57d0ddb56afa3a01",
+    "overlays/hw/unittest/barrier/Makefile": "cd784e59a037910ce8eff6eb092a610671626522bf72263b5d12b1db9781e372",
+    "overlays/hw/unittest/barrier/VX_barrier_top.sv": "6aba47eeee3319951decf1c191f05a2fa3d34fad7576f7670ad8347e2b255368",
+    "overlays/hw/unittest/barrier/main.cpp": "641c05199423f62647ed644580a95dc1ac7f11b874a94172b24dea656b351ca5",
+    "overlays/tests/regression/bar_generation/Makefile": "9af3024fa8c13b9ff3dea9b412406c301a61e4e3e778f7559cde7596ee7aaf3b",
+    "overlays/tests/regression/bar_generation/common.h": "85e2ca895729daef1bcc32299969f7eee2884bef155a9fa05238f1dbc776e878",
+    "overlays/tests/regression/bar_generation/kernel.cpp": "a8982b9bd2ab30b19005f58147403c7f234a0aace8355831d275c2eab97055ce",
+    "overlays/tests/regression/bar_generation/main.cpp": "a7e27eb857f112e4f8acd794d859bd3978b70f9d945a77e764155488ac09904d"
+  },
+  "vortex_commit": "bba80f8de208f867a173b587998ed5be9cefd1b4",
+  "source_patch_sha256": "5f08c30179cf322828a71f6740b6dca25394fb41024e626df303eabfc5698e72",
+  "previous_events_sha256": "4871595f43d5fab197dd4b2102b3b910b59c8ab4e2b248bb1fe9bc1529fd063f",
+  "execution": {
+    "status": "completed",
+    "exit_code": 1,
+    "output_bytes": 81,
+    "observed_output_bytes": 81,
+    "output_limit_bytes": 8388608,
+    "process_group_id": 157,
+    "cleanup_sigkill": false,
+    "cancellation_signal": null,
+    "process_elapsed_seconds": 0.003681231006339658
+  },
+  "events_sha256": "4871595f43d5fab197dd4b2102b3b910b59c8ab4e2b248bb1fe9bc1529fd063f",
+  "elapsed_host_seconds": 0.06113258900586516,
+  "stdout_sha256": "5f6dd3a4a4cfa1883ca9b0e6a665fd3bd391be7e2252a20e47714b716f8c4652"
+}

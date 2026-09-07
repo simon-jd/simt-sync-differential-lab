@@ -4,3 +4,6 @@ tests/fixtures/** -text -whitespace
 licenses/** -text -whitespace
 patches/** -text -whitespace
 results/*.csv -text whitespace=cr-at-eol
+
+# Preserve raw completion command output.
+results/completion/*.log -whitespace

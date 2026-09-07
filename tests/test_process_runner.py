@@ -40,6 +40,21 @@ class ProcessContractTests(unittest.TestCase):
         os.kill(pid, signal.SIGKILL)
         self.fail('descendant remained runnable after executor returned')
 
+    def test_cancellation_during_cleanup_is_not_lost(self):
+        from unittest.mock import patch
+        import process_runner
+        original = process_runner._stop_group
+        def signal_after_cleanup(proc, grace):
+            result = original(proc, grace)
+            os.kill(os.getpid(), signal.SIGTERM)
+            return result
+        with tempfile.TemporaryDirectory() as temporary:
+            with patch.object(process_runner, '_stop_group', side_effect=signal_after_cleanup):
+                result = execute([sys.executable, '-c', 'print("done")'],
+                    cwd=temporary, log_path=Path(temporary) / 'log', timeout=3)
+        self.assertEqual(result['status'], 'cancelled')
+        self.assertEqual(result['cancellation_signal'], signal.SIGTERM)
+
     def test_completed_preserves_bytes_and_exit_status(self):
         result = execute([sys.executable, '-c', 'import os; os.write(1,b"hello\\x00"); raise SystemExit(7)'],
             cwd=self.root, log_path=self.root / 'out', timeout=1)

@@ -1,0 +1,55 @@
+python3 scripts/completion_evidence.py verify
+{
+  "paired_system_runs": 8,
+  "rtl_unit_runs": 4,
+  "expected_baseline_semantic_failures": 3,
+  "fixed_rtl_cycles": 18555,
+  "fixed_invariant_checks": 50316,
+  "fixed_resets": 312,
+  "canonical_passes": 8,
+  "structural_synthesis": "passed"
+}
+python3 scripts/review_evidence.py
+{
+  "paired_system_runs": 8,
+  "rtl_unit_runs": 4,
+  "expected_baseline_semantic_failures": 3,
+  "fixed_rtl_cycles": 18555,
+  "fixed_invariant_checks": 50316,
+  "fixed_resets": 312
+}
+python3 -m unittest discover -s tests -v
+test_changed_log_is_rejected (test_evidence.EvidenceGates.test_changed_log_is_rejected) ... ok
+test_timeout_cannot_replace_a_semantic_counterexample (test_evidence.EvidenceGates.test_timeout_cannot_replace_a_semantic_counterexample) ... ok
+test_atomic_json_rejects_nan_without_replacing_previous_result (test_process_runner.ProcessContractTests.test_atomic_json_rejects_nan_without_replacing_previous_result) ... ok
+test_cancellation_during_cleanup_is_not_lost (test_process_runner.ProcessContractTests.test_cancellation_during_cleanup_is_not_lost) ... ok
+test_completed_preserves_bytes_and_exit_status (test_process_runner.ProcessContractTests.test_completed_preserves_bytes_and_exit_status) ... ok
+test_launch_error_is_a_terminal_outcome (test_process_runner.ProcessContractTests.test_launch_error_is_a_terminal_outcome) ... ok
+test_output_budget_is_a_hard_file_limit (test_process_runner.ProcessContractTests.test_output_budget_is_a_hard_file_limit) ... ok
+test_readers_never_observe_partial_json (test_process_runner.ProcessContractTests.test_readers_never_observe_partial_json) ... ok
+test_rejects_nonfinite_execution_budget (test_process_runner.ProcessContractTests.test_rejects_nonfinite_execution_budget) ... ok
+test_shared_directory_admission_is_exclusive (test_process_runner.ProcessContractTests.test_shared_directory_admission_is_exclusive) ... ok
+test_sigterm_cancels_and_persists_a_complete_outcome (test_process_runner.ProcessContractTests.test_sigterm_cancels_and_persists_a_complete_outcome) ... ok
+test_successful_leader_cannot_leave_background_work (test_process_runner.ProcessContractTests.test_successful_leader_cannot_leave_background_work) ... ok
+test_timeout_kills_descendant_after_leader_exits (test_process_runner.ProcessContractTests.test_timeout_kills_descendant_after_leader_exits) ... ok
+test_generic_failure_is_not_a_semantic_counterexample (test_run_case.AdapterTests.test_generic_failure_is_not_a_semantic_counterexample) ... fixture: infra_failure
+ok
+test_launch_failure_has_terminal_record (test_run_case.AdapterTests.test_launch_failure_has_terminal_record) ... fixture: infra_failure
+ok
+test_shared_directory_conflict_is_explicit (test_run_case.AdapterTests.test_shared_directory_conflict_is_explicit) ... fixture: busy
+ok
+test_stale_events_are_preserved_but_not_current_evidence (test_run_case.AdapterTests.test_stale_events_are_preserved_but_not_current_evidence) ... fixture: pass
+ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.743s
+
+OK
+python3 scripts/verify_evidence.py
+{
+  "system_runs": 8,
+  "rtl_cycles": 18555,
+  "invariant_checks": 50316,
+  "resets": 312,
+  "canonical_passes": 8
+}

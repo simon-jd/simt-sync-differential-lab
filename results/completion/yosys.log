@@ -1,0 +1,1377 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.57+157 (git sha1 b9dc57841, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Running command `
+  read_verilog artifacts/synthesis/barrier.v;
+  hierarchy -check -top VX_barrier_top;
+  synth -top VX_barrier_top;
+  check -assert;
+  stat;
+' --
+
+1. Executing Verilog-2005 frontend: artifacts/synthesis/barrier.v
+Parsing Verilog input from `artifacts/synthesis/barrier.v' to AST representation.
+Generating RTLIL representation for module `\VX_dp_ram'.
+Generating RTLIL representation for module `\VX_barrier_top'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     \VX_dp_ram
+Parameter \DATAW = 1
+Parameter \SIZE = 32
+Parameter \RDW_MODE = 8'01010111
+Parameter \RADDR_REG = 1
+
+2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\VX_dp_ram'.
+Parameter \DATAW = 1
+Parameter \SIZE = 32
+Parameter \RDW_MODE = 8'01010111
+Parameter \RADDR_REG = 1
+Generating RTLIL representation for module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Parameter \DATAW = 12
+Parameter \SIZE = 32
+Parameter \OUT_REG = 1
+Parameter \RDW_MODE = 8'01010111
+
+2.3. Executing AST frontend in derive mode using pre-parsed AST for module `\VX_dp_ram'.
+Parameter \DATAW = 12
+Parameter \SIZE = 32
+Parameter \OUT_REG = 1
+Parameter \RDW_MODE = 8'01010111
+Generating RTLIL representation for module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+
+2.4. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+Used module:     $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+
+2.5. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+Used module:     $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+Removing unused module `\VX_dp_ram'.
+Removed 1 unused modules.
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+Used module:     $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+Used module:     $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$artifacts/synthesis/barrier.v:526$116 in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Marked 1 switch rules as full_case in process $proc$artifacts/synthesis/barrier.v:854$111 in module VX_barrier_top.
+Marked 2 switch rules as full_case in process $proc$artifacts/synthesis/barrier.v:838$93 in module VX_barrier_top.
+Marked 10 switch rules as full_case in process $proc$artifacts/synthesis/barrier.v:707$55 in module VX_barrier_top.
+Marked 1 switch rules as full_case in process $proc$artifacts/synthesis/barrier.v:317$125 in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 30 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~16 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:526$116'.
+     1/3: $1$memwr$\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:528$115_EN[0:0]$122
+     2/3: $1$memwr$\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:528$115_DATA[0:0]$121
+     3/3: $1$memwr$\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:528$115_ADDR[4:0]$120
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:888$114'.
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:885$113'.
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:882$112'.
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:854$111'.
+     1/1: $0\dut.unlock_valid_r[0:0]
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+     1/5: $2$lookahead\dut.store_valids$92[31:0]$99
+     2/5: $2$bitselwrite$pos$artifacts/synthesis/barrier.v:845$44[4:0]$98
+     3/5: $0\dut.phase_r[0:0]
+     4/5: $1$lookahead\dut.store_valids$92[31:0]$97
+     5/5: $1$bitselwrite$pos$artifacts/synthesis/barrier.v:845$44[4:0]$96
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+     1/48: $7\dut.unlock_mask_n[3:0]
+     2/48: $7\dut.unlock_valid_n[0:0]
+     3/48: $9\dut.mask_n[3:0]
+     4/48: $8\dut.mask_n[3:0]
+     5/48: $7\dut.mask_n[3:0]
+     6/48: $6\dut.phase_n[0:0]
+     7/48: $6\dut.unlock_mask_n[3:0]
+     8/48: $6\dut.unlock_valid_n[0:0]
+     9/48: $6\dut.mask_n[3:0]
+    10/48: $5\dut.unlock_mask_n[3:0]
+    11/48: $5\dut.unlock_valid_n[0:0]
+    12/48: $5\dut.phase_n[0:0]
+    13/48: $5\dut.mask_n[3:0]
+    14/48: $4\dut.count_n[1:0]
+    15/48: $4\dut.unlock_mask_n[3:0]
+    16/48: $4\dut.unlock_valid_n[0:0]
+    17/48: $4\dut.phase_n[0:0]
+    18/48: $3\dut.count_n[1:0]
+    19/48: $4\dut.mask_n[3:0]
+    20/48: $3\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.$result[1:0]$80
+    21/48: $3\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.inp[1:0]$81
+    22/48: $3\dut.phase_n[0:0]
+    23/48: $3\dut.unlock_mask_n[3:0]
+    24/48: $3\dut.unlock_valid_n[0:0]
+    25/48: $3\dut.mask_n[3:0]
+    26/48: $3\dut.events_n[5:0]
+    27/48: $3\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.$result[5:0]$70
+    28/48: $3\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.inp[5:0]$71
+    29/48: $2\dut.unlock_mask_n[3:0]
+    30/48: $2\dut.unlock_valid_n[0:0]
+    31/48: $2\dut.phase_n[0:0]
+    32/48: $2\dut.mask_n[3:0]
+    33/48: $2\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.inp[5:0]$67
+    34/48: $2\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.$result[5:0]$66
+    35/48: $2\dut.events_n[5:0]
+    36/48: $2\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.inp[1:0]$69
+    37/48: $2\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.$result[1:0]$68
+    38/48: $2\dut.count_n[1:0]
+    39/48: $1\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.inp[1:0]$65
+    40/48: $1\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.$result[1:0]$64
+    41/48: $1\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.inp[5:0]$63
+    42/48: $1\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.$result[5:0]$62
+    43/48: $1\dut.unlock_mask_n[3:0]
+    44/48: $1\dut.unlock_valid_n[0:0]
+    45/48: $1\dut.phase_n[0:0]
+    46/48: $1\dut.events_n[5:0]
+    47/48: $1\dut.count_n[1:0]
+    48/48: $1\dut.mask_n[3:0]
+Creating decoders for process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:629$46'.
+Creating decoders for process `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+     1/4: $1$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$131
+     2/4: $1$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_DATA[11:0]$130
+     3/4: $1$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_ADDR[4:0]$129
+     4/4: $0\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.raddr_r[4:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\VX_barrier_top.\dut.gbar_req_id_r' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:888$114'.
+No latch inferred for signal `\VX_barrier_top.\dut.gbar_req_size_m1_r' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:885$113'.
+No latch inferred for signal `\VX_barrier_top.\dut.gbar_req_valid_r' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:882$112'.
+No latch inferred for signal `\VX_barrier_top.\dut.mask_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.count_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.events_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.phase_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.unlock_valid_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.unlock_mask_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.gbar_req_valid_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.gbar_req_id_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\dut.gbar_req_size_m1_n' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.$result' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_6$func$artifacts/synthesis/barrier.v:720$42.inp' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.$result' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_2$func$artifacts/synthesis/barrier.v:731$43.inp' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_1C6DC$func$artifacts/synthesis/barrier.v:629$40.$result' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:629$46'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_1C6DC$func$artifacts/synthesis/barrier.v:629$45.$result' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:629$46'.
+No latch inferred for signal `\VX_barrier_top.\sv2v_cast_1C6DC$func$artifacts/synthesis/barrier.v:629$45.inp' from process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:629$46'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$memwr$\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:528$115_ADDR' using process `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:526$116'.
+  created $dff cell `$procdff$582' with positive edge clock.
+Creating register for signal `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$memwr$\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:528$115_DATA' using process `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:526$116'.
+  created $dff cell `$procdff$583' with positive edge clock.
+Creating register for signal `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$memwr$\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:528$115_EN' using process `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:526$116'.
+  created $dff cell `$procdff$584' with positive edge clock.
+Creating register for signal `\VX_barrier_top.\dut.unlock_valid_r' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:854$111'.
+  created $dff cell `$procdff$585' with positive edge clock.
+Creating register for signal `\VX_barrier_top.\dut.unlock_mask_r' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:854$111'.
+  created $dff cell `$procdff$586' with positive edge clock.
+Creating register for signal `\VX_barrier_top.\dut.phase_r' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+  created $dff cell `$procdff$587' with positive edge clock.
+Creating register for signal `\VX_barrier_top.\dut.store_waddr' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+  created $dff cell `$procdff$588' with positive edge clock.
+Creating register for signal `\VX_barrier_top.\dut.store_valids' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+  created $dff cell `$procdff$589' with positive edge clock.
+Creating register for signal `\VX_barrier_top.$bitselwrite$pos$artifacts/synthesis/barrier.v:845$44' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+  created $dff cell `$procdff$590' with positive edge clock.
+Creating register for signal `\VX_barrier_top.$lookahead\dut.store_valids$92' using process `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+  created $dff cell `$procdff$591' with positive edge clock.
+Creating register for signal `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.raddr_r' using process `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+  created $dff cell `$procdff$592' with positive edge clock.
+Creating register for signal `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_ADDR' using process `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+  created $dff cell `$procdff$593' with positive edge clock.
+Creating register for signal `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_DATA' using process `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+  created $dff cell `$procdff$594' with positive edge clock.
+Creating register for signal `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN' using process `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+  created $dff cell `$procdff$595' with positive edge clock.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:526$116'.
+Removing empty process `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:526$116'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:888$114'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:885$113'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:882$112'.
+Found and cleaned up 1 empty switch in `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:854$111'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:854$111'.
+Found and cleaned up 2 empty switches in `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:838$93'.
+Found and cleaned up 10 empty switches in `\VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:707$55'.
+Removing empty process `VX_barrier_top.$proc$artifacts/synthesis/barrier.v:629$46'.
+Found and cleaned up 2 empty switches in `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+Removing empty process `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.$proc$artifacts/synthesis/barrier.v:317$125'.
+Cleaned up 16 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+<suppressed ~55 debug messages>
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+
+3.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+
+3.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Removed 35 unused cells and 348 unused wires.
+<suppressed ~39 debug messages>
+
+3.5. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram...
+Checking module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram...
+Checking module VX_barrier_top...
+Found and reported 0 problems.
+
+3.6. Executing OPT pass (performing simple optimizations).
+
+3.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+3.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$149.
+    dead port 1/2 on $mux $procmux$171.
+    dead port 2/2 on $mux $procmux$176.
+    dead port 1/2 on $mux $procmux$183.
+    dead port 2/2 on $mux $procmux$188.
+    dead port 1/2 on $mux $procmux$195.
+    dead port 2/2 on $mux $procmux$200.
+    dead port 1/2 on $mux $procmux$208.
+    dead port 2/2 on $mux $procmux$210.
+    dead port 2/2 on $mux $procmux$215.
+    dead port 1/2 on $mux $procmux$224.
+    dead port 2/2 on $mux $procmux$226.
+    dead port 2/2 on $mux $procmux$228.
+    dead port 2/2 on $mux $procmux$233.
+    dead port 2/2 on $mux $procmux$241.
+    dead port 2/2 on $mux $procmux$243.
+    dead port 2/2 on $mux $procmux$248.
+    dead port 2/2 on $mux $procmux$256.
+    dead port 2/2 on $mux $procmux$258.
+    dead port 2/2 on $mux $procmux$263.
+    dead port 2/2 on $mux $procmux$271.
+    dead port 2/2 on $mux $procmux$273.
+    dead port 2/2 on $mux $procmux$278.
+    dead port 2/2 on $mux $procmux$286.
+    dead port 2/2 on $mux $procmux$288.
+    dead port 2/2 on $mux $procmux$293.
+    dead port 2/2 on $mux $procmux$300.
+    dead port 2/2 on $mux $procmux$305.
+    dead port 2/2 on $mux $procmux$312.
+    dead port 2/2 on $mux $procmux$317.
+    dead port 2/2 on $mux $procmux$324.
+    dead port 2/2 on $mux $procmux$329.
+    dead port 2/2 on $mux $procmux$336.
+    dead port 2/2 on $mux $procmux$341.
+    dead port 2/2 on $mux $procmux$348.
+    dead port 2/2 on $mux $procmux$353.
+    dead port 2/2 on $mux $procmux$362.
+    dead port 2/2 on $mux $procmux$371.
+    dead port 2/2 on $mux $procmux$380.
+    dead port 2/2 on $mux $procmux$389.
+    dead port 2/2 on $mux $procmux$398.
+    dead port 2/2 on $mux $procmux$485.
+    dead port 2/2 on $mux $procmux$491.
+    dead port 2/2 on $mux $procmux$497.
+    dead port 2/2 on $mux $procmux$503.
+    dead port 2/2 on $mux $procmux$521.
+    dead port 2/2 on $mux $procmux$539.
+Removed 47 multiplexer ports.
+<suppressed ~108 debug messages>
+
+3.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+    Consolidated identical input bits for $mux cell $procmux$572:
+      Old ports: A=12'000000000000, B=12'111111111111, Y=$0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0]
+      New connections: $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [11:1] = { $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] $0$memwr$\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$artifacts/synthesis/barrier.v:319$124_EN[11:0]$128 [0] }
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 2 changes.
+
+3.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+3.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 0 unused cells and 52 unused wires.
+<suppressed ~1 debug messages>
+
+3.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~57 debug messages>
+
+3.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.6.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.7. Executing FSM pass (extract and optimize FSM).
+
+3.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~57 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$592 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \raddr, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.raddr_r).
+Adding SRST signal on $procdff$589 ($dff) from module VX_barrier_top (D = $2$lookahead\dut.store_valids$92[31:0]$99, Q = \dut.store_valids, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$599 ($sdff) from module VX_barrier_top (D = $or$artifacts/synthesis/barrier.v:845$106_Y, Q = \dut.store_valids).
+Adding SRST signal on $procdff$587 ($dff) from module VX_barrier_top (D = \read_phase, Q = \dut.phase_r, rval = 1'0).
+Adding SRST signal on $procdff$585 ($dff) from module VX_barrier_top (D = $2\dut.unlock_valid_n[0:0], Q = \dut.unlock_valid_r, rval = 1'0).
+
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 6 unused cells and 6 unused wires.
+<suppressed ~9 debug messages>
+
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~48 debug messages>
+
+3.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.8.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 3 bits (of 4) from port A of cell VX_barrier_top.$shl$artifacts/synthesis/barrier.v:704$51 ($shl).
+Removed top 1 bits (of 2) from port B of cell VX_barrier_top.$add$artifacts/synthesis/barrier.v:705$53 ($add).
+Removed top 2 bits (of 4) from port A of cell VX_barrier_top.$shl$artifacts/synthesis/barrier.v:750$86 ($shl).
+Converting cell VX_barrier_top.$neg$artifacts/synthesis/barrier.v:845$100 ($neg) from signed to unsigned.
+Removed top 1 bits (of 6) from port A of cell VX_barrier_top.$neg$artifacts/synthesis/barrier.v:845$100 ($neg).
+Removed top 5 bits (of 13) from wire VX_barrier_top.dut.req_data.
+Removed top 5 bits (of 13) from wire VX_barrier_top.request.
+
+3.10. Executing PEEPOPT pass (run peephole optimizers).
+
+3.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+3.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram:
+  created 0 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram:
+  created 0 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module VX_barrier_top:
+  creating $macc model for $add$artifacts/synthesis/barrier.v:705$53 ($add).
+  creating $macc model for $neg$artifacts/synthesis/barrier.v:845$100 ($neg).
+  creating $alu model for $macc $neg$artifacts/synthesis/barrier.v:845$100.
+  creating $alu model for $macc $add$artifacts/synthesis/barrier.v:705$53.
+  creating $alu cell for $add$artifacts/synthesis/barrier.v:705$53: $auto$alumacc.cc:495:replace_alu$609
+  creating $alu cell for $neg$artifacts/synthesis/barrier.v:845$100: $auto$alumacc.cc:495:replace_alu$612
+  created 2 $alu and 0 $macc cells.
+
+3.13. Executing SHARE pass (SAT-based resource sharing).
+
+3.14. Executing OPT pass (performing simple optimizations).
+
+3.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~48 debug messages>
+
+3.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.14.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.15. Executing MEMORY pass.
+
+3.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram write port 0.
+  Analyzing $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram write port 0.
+
+3.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram'[0] in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram': no output FF found.
+Checking read port address `\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram'[0] in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram': merged address FF to cell.
+Checking read port `\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram'[0] in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram': no output FF found.
+Checking read port address `\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram'[0] in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram': no address FF found.
+
+3.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.17. Executing OPT pass (performing simple optimizations).
+
+3.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+<suppressed ~3 debug messages>
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+<suppressed ~3 debug messages>
+Optimizing module VX_barrier_top.
+<suppressed ~8 debug messages>
+
+3.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 0 unused cells and 12 unused wires.
+<suppressed ~3 debug messages>
+
+3.17.5. Finished fast OPT passes.
+
+3.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram:
+  created 32 $dff cells and 0 static cells of width 12.
+Extracted addr FF from read port 0 of $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram: $\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram$rdreg[0]
+  read interface: 1 $dff and 31 $mux cells.
+  write interface: 32 write mux blocks.
+Mapping memory \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram:
+  created 32 $dff cells and 0 static cells of width 1.
+  read interface: 0 $dff and 31 $mux cells.
+  write interface: 32 write mux blocks.
+
+3.19. Executing OPT pass (performing simple optimizations).
+
+3.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+<suppressed ~10 debug messages>
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+<suppressed ~10 debug messages>
+Optimizing module VX_barrier_top.
+
+3.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~222 debug messages>
+
+3.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.19.6. Executing OPT_SHARE pass.
+
+3.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 0 unused cells and 138 unused wires.
+<suppressed ~2 debug messages>
+
+3.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~222 debug messages>
+
+3.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.19.14. Executing OPT_SHARE pass.
+
+3.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[9]$639 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[9]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[8]$637 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[8]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[7]$635 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[7]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[6]$633 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[6]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[5]$631 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[5]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[4]$629 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[4]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[3]$627 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[3]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[31]$683 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[31]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[30]$681 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[30]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[2]$625 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[2]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[29]$679 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[29]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[28]$677 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[28]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[27]$675 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[27]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[26]$673 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[26]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[25]$671 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[25]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[24]$669 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[24]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[23]$667 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[23]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[22]$665 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[22]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[21]$663 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[21]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[20]$661 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[20]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[1]$623 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[1]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[19]$659 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[19]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[18]$657 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[18]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[17]$655 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[17]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[16]$653 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[16]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[15]$651 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[15]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[14]$649 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[14]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[13]$647 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[13]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[12]$645 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[12]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[11]$643 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[11]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[10]$641 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[10]).
+Adding EN signal on $memory\g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[0]$621 ($dff) from module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_sync.genblk1.g_auto.g_write_first.g_no_wren.ram[0]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[9]$1040 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[9]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[8]$1038 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[8]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[7]$1036 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[7]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[6]$1034 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[6]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[5]$1032 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[5]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[4]$1030 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[4]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[3]$1028 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[3]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[31]$1084 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[31]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[30]$1082 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[30]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[2]$1026 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[2]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[29]$1080 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[29]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[28]$1078 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[28]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[27]$1076 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[27]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[26]$1074 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[26]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[25]$1072 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[25]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[24]$1070 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[24]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[23]$1068 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[23]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[22]$1066 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[22]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[21]$1064 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[21]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[20]$1062 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[20]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[1]$1024 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[1]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[19]$1060 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[19]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[18]$1058 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[18]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[17]$1056 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[17]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[16]$1054 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[16]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[15]$1052 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[15]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[14]$1050 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[14]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[13]$1048 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[13]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[12]$1046 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[12]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[11]$1044 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[11]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[10]$1042 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[10]).
+Adding EN signal on $memory\g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[0]$1022 ($dff) from module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram (D = \wdata, Q = \g_no_asic.g_async.g_auto.g_write_first.g_no_wren.ram[0]).
+
+3.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 64 unused cells and 64 unused wires.
+<suppressed ~66 debug messages>
+
+3.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.19.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.19.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \VX_barrier_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~94 debug messages>
+
+3.19.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+  Optimizing cells in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+  Optimizing cells in module \VX_barrier_top.
+Performed a total of 0 changes.
+
+3.19.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.19.22. Executing OPT_SHARE pass.
+
+3.19.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.19.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+
+3.19.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+
+3.19.26. Finished fast OPT passes. (There is nothing left to do.)
+
+3.20. Executing TECHMAP pass (map to technology primitives).
+
+3.20.1. Executing Verilog-2005 frontend: /workspace/tools/yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/workspace/tools/yosys/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+3.20.2. Continuing TECHMAP pass.
+Using template $paramod$constmap:66d421c313e4e958be776b99540ac2de3b59fdbc$paramod$77562a466236eb4a6d905351a0995599b75075cb\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$9f3f81d189a6b1d5c738a580270bbb92e45c5c71\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $ne.
+Using template $paramod$constmap:4edb66e0d088a61c7edd1b98fbc82bc43943c3a9$paramod$244b2c5d4fd64a2cf8f8849abfe8960b103dffcd\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$constmap:e2101c44e3f83a0dc2da774cd1fdd19ff2da5f4f$paramod$e194a9e890de0a7be18db8bd15a1479dea055e42\_90_shift_shiftx for cells of type $shiftx.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod$175e67c02b86e96b1288b9dc100122520d7240d8\_90_alu for cells of type $alu.
+Using template $paramod$constmap:4b059bacb536c9a389a01772cd479391d395b6c3$paramod$320aa077a7b7c3e2ebcbf2ed330b2bc798d6703e\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $dff.
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+Using extmapper simplemap for cells of type $dffe.
+No more expansions possible.
+<suppressed ~1475 debug messages>
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+Optimizing module VX_barrier_top.
+<suppressed ~375 debug messages>
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+<suppressed ~21 debug messages>
+Removed a total of 7 cells.
+
+3.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 261 unused cells and 103 unused wires.
+<suppressed ~262 debug messages>
+
+3.21.5. Finished fast OPT passes.
+
+3.22. Executing ABC pass (technology mapping using ABC).
+
+3.22.1. Extracting gate netlist of module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram' to `<abc-temp-dir>/input.blif'..
+
+3.22.1.1. Executed ABC.
+Extracted 462 gates and 868 wires to a netlist network with 406 inputs and 49 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Sep 21 2025 19:05:45)
+ABC: abc 01> set abcout /dev/stdout
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library /tmp/yosys-abc-rVlHJB/stdcells.genlib 
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: abc 04> echo "ABC_DONE"
+
+3.22.1.2. Re-integrating ABC results.
+ABC RESULTS:            ANDNOT cells:       32
+ABC RESULTS:               MUX cells:      377
+ABC RESULTS:              NAND cells:        2
+ABC RESULTS:               NOT cells:        5
+ABC RESULTS:                OR cells:       42
+ABC RESULTS:             ORNOT cells:        4
+ABC RESULTS:        internal signals:      413
+ABC RESULTS:           input signals:      406
+ABC RESULTS:          output signals:       49
+Removing temp directory.
+
+3.22.2. Extracting gate netlist of module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram' to `<abc-temp-dir>/input.blif'..
+
+3.22.2.1. Executed ABC.
+Extracted 116 gates and 159 wires to a netlist network with 43 inputs and 33 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Sep 21 2025 19:05:45)
+ABC: abc 01> set abcout /dev/stdout
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library /tmp/yosys-abc-rVlHJB/stdcells.genlib 
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: abc 04> echo "ABC_DONE"
+
+3.22.2.2. Re-integrating ABC results.
+ABC RESULTS:            ANDNOT cells:       32
+ABC RESULTS:               MUX cells:       31
+ABC RESULTS:              NAND cells:        2
+ABC RESULTS:               NOT cells:        4
+ABC RESULTS:                OR cells:       42
+ABC RESULTS:             ORNOT cells:        4
+ABC RESULTS:        internal signals:       83
+ABC RESULTS:           input signals:       43
+ABC RESULTS:          output signals:       33
+Removing temp directory.
+
+3.22.3. Extracting gate netlist of module `\VX_barrier_top' to `<abc-temp-dir>/input.blif'..
+
+3.22.3.1. Executed ABC.
+Extracted 329 gates and 395 wires to a netlist network with 65 inputs and 52 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Sep 21 2025 19:05:45)
+ABC: abc 01> set abcout /dev/stdout
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library /tmp/yosys-abc-rVlHJB/stdcells.genlib 
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: abc 04> echo "ABC_DONE"
+
+3.22.3.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       19
+ABC RESULTS:            ANDNOT cells:       43
+ABC RESULTS:               MUX cells:       95
+ABC RESULTS:               NOR cells:        4
+ABC RESULTS:               NOT cells:       13
+ABC RESULTS:                OR cells:       74
+ABC RESULTS:             ORNOT cells:        3
+ABC RESULTS:              XNOR cells:        4
+ABC RESULTS:               XOR cells:       10
+ABC RESULTS:        internal signals:      278
+ABC RESULTS:           input signals:       65
+ABC RESULTS:          output signals:       52
+Removing temp directory.
+Removing global temp directory.
+
+3.23. Executing OPT pass (performing simple optimizations).
+
+3.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram.
+<suppressed ~180 debug messages>
+Optimizing module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram.
+<suppressed ~14 debug messages>
+Optimizing module VX_barrier_top.
+<suppressed ~51 debug messages>
+
+3.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram'.
+Finding identical cells in module `$paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram'.
+Finding identical cells in module `\VX_barrier_top'.
+Removed a total of 0 cells.
+
+3.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram..
+Finding unused cells or wires in module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram..
+Finding unused cells or wires in module \VX_barrier_top..
+Removed 16 unused cells and 853 unused wires.
+<suppressed ~26 debug messages>
+
+3.23.5. Finished fast OPT passes.
+
+3.24. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `VX_barrier_top'. Setting top module to VX_barrier_top.
+
+3.24.1. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+Used module:     $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+
+3.24.2. Analyzing design hierarchy..
+Top module:  \VX_barrier_top
+Used module:     $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+Used module:     $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+Removed 0 unused modules.
+
+3.25. Printing statistics.
+
+=== $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      489 wires
+      879 wire bits
+       42 public wires
+      428 public wire bits
+        9 ports
+       39 port bits
+      852 cells
+       32   $_ANDNOT_
+      389   $_DFFE_PP_
+        5   $_DFF_P_
+      377   $_MUX_
+        2   $_NAND_
+        1   $_NOT_
+        4   $_ORNOT_
+       42   $_OR_
+
+=== $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      152 wires
+      160 wire bits
+       41 public wires
+       49 public wire bits
+        9 ports
+       17 port bits
+      144 cells
+       32   $_ANDNOT_
+       32   $_DFFE_PP_
+       31   $_MUX_
+        2   $_NAND_
+        1   $_NOT_
+        4   $_ORNOT_
+       42   $_OR_
+
+=== VX_barrier_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      297 wires
+      437 wire bits
+       59 public wires
+      199 public wire bits
+       12 ports
+       24 port bits
+      299 cells
+       43   $_ANDNOT_
+       19   $_AND_
+        9   $_DFF_P_
+       95   $_MUX_
+        4   $_NOR_
+        4   $_NOT_
+        3   $_ORNOT_
+       74   $_OR_
+       32   $_SDFFE_PP0P_
+        2   $_SDFF_PP0_
+        4   $_XNOR_
+       10   $_XOR_
+        2 submodules
+        1   $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+        1   $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+     1295 VX_barrier_top
+      852 $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+      144 $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+
+        +----------Count including submodules.
+        | 
+      938 wires
+     1476 wire bits
+      142 public wires
+      676 public wire bits
+       30 ports
+       80 port bits
+        - memories
+        - memory bits
+        - processes
+     1295 cells
+      107   $_ANDNOT_
+       19   $_AND_
+      421   $_DFFE_PP_
+       14   $_DFF_P_
+      503   $_MUX_
+        4   $_NAND_
+        4   $_NOR_
+        6   $_NOT_
+       11   $_ORNOT_
+      158   $_OR_
+       32   $_SDFFE_PP0P_
+        2   $_SDFF_PP0_
+        4   $_XNOR_
+       10   $_XOR_
+        2 submodules
+        1   $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+        1   $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+
+3.26. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram...
+Checking module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram...
+Checking module VX_barrier_top...
+Found and reported 0 problems.
+
+4. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram...
+Checking module $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram...
+Checking module VX_barrier_top...
+Found and reported 0 problems.
+
+5. Printing statistics.
+
+=== $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      489 wires
+      879 wire bits
+       42 public wires
+      428 public wire bits
+        9 ports
+       39 port bits
+      852 cells
+       32   $_ANDNOT_
+      389   $_DFFE_PP_
+        5   $_DFF_P_
+      377   $_MUX_
+        2   $_NAND_
+        1   $_NOT_
+        4   $_ORNOT_
+       42   $_OR_
+
+=== $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      152 wires
+      160 wire bits
+       41 public wires
+       49 public wire bits
+        9 ports
+       17 port bits
+      144 cells
+       32   $_ANDNOT_
+       32   $_DFFE_PP_
+       31   $_MUX_
+        2   $_NAND_
+        1   $_NOT_
+        4   $_ORNOT_
+       42   $_OR_
+
+=== VX_barrier_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      297 wires
+      437 wire bits
+       59 public wires
+      199 public wire bits
+       12 ports
+       24 port bits
+      299 cells
+       43   $_ANDNOT_
+       19   $_AND_
+        9   $_DFF_P_
+       95   $_MUX_
+        4   $_NOR_
+        4   $_NOT_
+        3   $_ORNOT_
+       74   $_OR_
+       32   $_SDFFE_PP0P_
+        2   $_SDFF_PP0_
+        4   $_XNOR_
+       10   $_XOR_
+        2 submodules
+        1   $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+        1   $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+     1295 VX_barrier_top
+      852 $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+      144 $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+
+        +----------Count including submodules.
+        | 
+      938 wires
+     1476 wire bits
+      142 public wires
+      676 public wire bits
+       30 ports
+       80 port bits
+        - memories
+        - memory bits
+        - processes
+     1295 cells
+      107   $_ANDNOT_
+       19   $_AND_
+      421   $_DFFE_PP_
+       14   $_DFF_P_
+      503   $_MUX_
+        4   $_NAND_
+        4   $_NOR_
+        6   $_NOT_
+       11   $_ORNOT_
+      158   $_OR_
+       32   $_SDFFE_PP0P_
+        2   $_SDFF_PP0_
+        4   $_XNOR_
+       10   $_XOR_
+        2 submodules
+        1   $paramod$898edf1c36c693f709fc5a5a796ad8438035a313\VX_dp_ram
+        1   $paramod$a39ce4eb99e06a6f3df35868689c1594cf3bc4d4\VX_dp_ram
+
+End of script. Logfile hash: 8e28aa8c5a, CPU: user 0.17s system 0.01s, MEM: 26.15 MB peak
+Yosys 0.57+157 (git sha1 b9dc57841, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 48% 1x abc (0 sec), 13% 29x opt_expr (0 sec), ...

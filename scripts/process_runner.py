@@ -106,7 +106,8 @@ def execute(command, *, cwd, log_path, timeout, grace=0.25,
     interrupted = []
 
     def cancel(signum, _frame):
-        interrupted.append(signum)
+        if not interrupted:
+            interrupted.append(signum)
 
     if threading.current_thread() is threading.main_thread():
         for sig in [signal.SIGINT, signal.SIGTERM]:
@@ -159,9 +160,15 @@ def execute(command, *, cwd, log_path, timeout, grace=0.25,
                 proc.stdout.close()
     finally:
         # Also clean up when a local I/O exception interrupts normal collection.
-        if proc is not None and not cleaned:
-            _stop_group(proc, grace)
-        for sig, handler in handlers.items():
-            signal.signal(sig, handler)
+        try:
+            if proc is not None and not cleaned:
+                _stop_group(proc, grace)
+        finally:
+            if interrupted:
+                outcome['cancellation_signal'] = interrupted[0]
+                if outcome['status'] != 'cleanup_failure':
+                    outcome['status'] = 'cancelled'
+            for sig, handler in handlers.items():
+                signal.signal(sig, handler)
     outcome['process_elapsed_seconds'] = time.monotonic() - started
     return outcome

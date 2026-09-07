@@ -17,8 +17,8 @@ def require(condition, message):
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
-def verify():
-    root = ROOT / 'results/review/live'
+def verify(root=None, prefix='review-20260906-'):
+    root = root or ROOT / 'results/review/live'
     index = json.loads((root / 'index.json').read_text())
     with tempfile.TemporaryDirectory() as temporary:
         unpacked = Path(temporary)
@@ -42,7 +42,6 @@ def verify():
             require(execution['output_bytes'] <= execution['output_limit_bytes'], 'output budget violated')
         lock = json.loads((ROOT / 'upstream.lock.json').read_text())
         require(len(records) == 12, 'incomplete paired and unit replay')
-        prefix = 'review-20260906-'
         for name, rec in records.items():
             folder = unpacked / name
             require(rec['vortex_commit'] == lock['commit'], 'model revision mismatch')

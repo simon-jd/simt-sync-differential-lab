@@ -1,5 +1,8 @@
 # Execution reliability review — 2026-09-06
 
+This records the first review. The [follow-up audit](completion-audit.md) closes
+its deferred full local reruns and adds further regression gates.
+
 ## Decision and acceptance
 
 The [dated role/ecosystem review](market-review-2026-09-06.md) supports these
