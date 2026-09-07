@@ -1,0 +1,13 @@
+review-20260906-baseline-slot-simx: pass
+review-20260906-baseline-slot-rtlsim: semantic_failure
+review-20260906-baseline-generation-simx: semantic_failure
+review-20260906-baseline-generation-rtlsim: pass
+review-20260906-baseline-unit-1: semantic_failure
+review-20260906-fixed-slot-simx: pass
+review-20260906-fixed-slot-rtlsim: pass
+review-20260906-fixed-generation-simx: pass
+review-20260906-fixed-generation-rtlsim: pass
+review-20260906-fixed-unit-1: pass
+review-20260906-fixed-unit-42: pass
+review-20260906-fixed-unit-2026: pass
+Expected baseline counterexamples and fixed-model passes reproduced.

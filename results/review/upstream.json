@@ -1,0 +1,43 @@
+{
+  "repository": "vortexgpgpu/vortex",
+  "metadata": {
+    "html_url": "https://github.com/vortexgpgpu/vortex",
+    "archived": false,
+    "disabled": false,
+    "default_branch": "master",
+    "pushed_at": "2026-09-05T01:30:22Z"
+  },
+  "latest_commit": "bba80f8de208f867a173b587998ed5be9cefd1b4",
+  "releases": [
+    {
+      "tag_name": "v3.0",
+      "published_at": "2026-06-09T02:54:37Z",
+      "prerelease": true,
+      "html_url": "https://github.com/vortexgpgpu/vortex/releases/tag/v3.0"
+    },
+    {
+      "tag_name": "v2.3",
+      "published_at": "2026-04-25T03:15:56Z",
+      "prerelease": false,
+      "html_url": "https://github.com/vortexgpgpu/vortex/releases/tag/v2.3"
+    },
+    {
+      "tag_name": "v2.2",
+      "published_at": "2024-08-06T21:27:31Z",
+      "prerelease": false,
+      "html_url": "https://github.com/vortexgpgpu/vortex/releases/tag/v2.2"
+    },
+    {
+      "tag_name": "v2.1",
+      "published_at": "2024-05-14T07:02:31Z",
+      "prerelease": false,
+      "html_url": "https://github.com/vortexgpgpu/vortex/releases/tag/v2.1"
+    },
+    {
+      "tag_name": "v2.x",
+      "published_at": "2023-11-10T11:04:13Z",
+      "prerelease": false,
+      "html_url": "https://github.com/vortexgpgpu/vortex/releases/tag/v2.x"
+    }
+  ]
+}

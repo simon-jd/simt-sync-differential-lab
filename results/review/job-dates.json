@@ -1,0 +1,89 @@
+[
+  {
+    "source": "https://boards-api.greenhouse.io/v1/boards/scaleai/jobs/4730836005",
+    "metadata": {
+      "id": 4730836005,
+      "title": "Software Engineer - New Grad",
+      "updated_at": "2026-09-04T12:53:37-04:00",
+      "first_published": "2026-09-04T11:59:59-04:00",
+      "absolute_url": "https://job-boards.greenhouse.io/scaleai/jobs/4730836005"
+    }
+  },
+  {
+    "source": "https://api.ashbyhq.com/posting-api/job-board/cerebras",
+    "requested_id": "05fd05ea-b515-4c26-851e-b3882dfba154",
+    "requested_posting_present": false,
+    "related_current_postings": [
+      {
+        "id": "90879967-1071-4d05-9180-6e18023ed887",
+        "title": "AI Inference Core - Software Integration Engineer",
+        "publishedAt": "2026-02-05T16:10:29.592+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/90879967-1071-4d05-9180-6e18023ed887",
+        "isListed": true
+      },
+      {
+        "id": "864698cd-da36-42b6-bbcc-fc39d22010f0",
+        "title": "AI Engineer, Model Quality and Performance",
+        "publishedAt": "2026-05-15T12:28:49.572+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/864698cd-da36-42b6-bbcc-fc39d22010f0",
+        "isListed": true
+      },
+      {
+        "id": "224566db-c2c9-4b81-9534-a9917ea1aaa6",
+        "title": "Cloud Quality Engineer",
+        "publishedAt": "2026-07-02T15:50:58.787+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/224566db-c2c9-4b81-9534-a9917ea1aaa6",
+        "isListed": true
+      },
+      {
+        "id": "af87f29d-7ae1-4306-b6b0-61b21971b456",
+        "title": "AI Inference Core - SDET Technical Lead, Release Integration Testing",
+        "publishedAt": "2026-09-03T19:22:52.625+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/af87f29d-7ae1-4306-b6b0-61b21971b456",
+        "isListed": true
+      },
+      {
+        "id": "c5c87a44-f891-4842-955f-f1bb59d9d124",
+        "title": "Senior Quality Assurance Engineer",
+        "publishedAt": "2026-07-28T00:35:29.692+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/c5c87a44-f891-4842-955f-f1bb59d9d124",
+        "isListed": true
+      },
+      {
+        "id": "d67609c3-6604-487e-8482-2ceffdb3f288",
+        "title": "Senior Supplier Quality Engineer",
+        "publishedAt": "2026-08-28T05:33:49.486+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/d67609c3-6604-487e-8482-2ceffdb3f288",
+        "isListed": true
+      },
+      {
+        "id": "c35a389c-807e-45fb-bfda-03f6b1361871",
+        "title": "ML Systems Integration Engineer",
+        "publishedAt": "2026-09-03T18:54:24.775+00:00",
+        "jobUrl": "https://jobs.ashbyhq.com/cerebras/c35a389c-807e-45fb-bfda-03f6b1361871",
+        "isListed": true
+      }
+    ]
+  },
+  {
+    "source": "https://api.ashbyhq.com/posting-api/job-board/zip",
+    "metadata": {
+      "id": "df6eb1ee-b360-46fe-b23f-658626ec59ea",
+      "title": "Software Engineer, New Grad (2027 Start)",
+      "publishedAt": "2026-08-25T20:37:11.884+00:00",
+      "jobUrl": "https://jobs.ashbyhq.com/zip/df6eb1ee-b360-46fe-b23f-658626ec59ea",
+      "isListed": true
+    }
+  },
+  {
+    "source": "https://api.ashbyhq.com/posting-api/job-board/cerebras",
+    "metadata": {
+      "id": "c35a389c-807e-45fb-bfda-03f6b1361871",
+      "title": "ML Systems Integration Engineer",
+      "publishedAt": "2026-09-03T18:54:24.775+00:00",
+      "jobUrl": "https://jobs.ashbyhq.com/cerebras/c35a389c-807e-45fb-bfda-03f6b1361871",
+      "isListed": true,
+      "location": "Sunnyvale, CA"
+    }
+  }
+]

@@ -1,0 +1,16 @@
+python3 -m unittest discover -s tests -v
+test_changed_log_is_rejected (test_evidence.EvidenceGates.test_changed_log_is_rejected) ... ok
+test_timeout_cannot_replace_a_semantic_counterexample (test_evidence.EvidenceGates.test_timeout_cannot_replace_a_semantic_counterexample) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.011s
+
+OK
+python3 scripts/verify_evidence.py
+{
+  "system_runs": 8,
+  "rtl_cycles": 18555,
+  "invariant_checks": 50316,
+  "resets": 312,
+  "canonical_passes": 8
+}

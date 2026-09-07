@@ -1,0 +1,17 @@
+{
+  "collected_at_utc": "2026-09-07T03:28:27.123965+00:00",
+  "host": {
+    "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+    "python": "3.14.4",
+    "machine": "x86_64"
+  },
+  "limits": {
+    "container_cpu_quota": 4,
+    "container_memory_gib": 16
+  },
+  "timing_claim": "Host elapsed times are diagnostic only; concurrent execution and mixed runtimes are not a performance comparison.",
+  "baseline_project_commit": "bfa0aa5a74fb565a161d702a36236ffae1b29226",
+  "reviewed_process_runner_sha256": "7f2b04564ba65b941ae0a69f5a4e134a07e00155dba9ad9860f9e7cd2a6b9f6a",
+  "live_replay_process_runner_sha256": "79d5ad9a12ccec91d37654102bdde59e1babd449d8edb0224909f897db3e4303",
+  "code_note": "Live replay preceded the license-header-only runner edit and the extra A empty-suite admission guard; final make test exercised the reviewed tree. Neither changes successful backend execution."
+}

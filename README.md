@@ -58,3 +58,10 @@ third-party attestation; rerun the experiments to validate the claims yourself.
 
 Read [resume/interview notes](docs/interview.md) and
 [upstream attribution](THIRD_PARTY.md). No upstream contribution has been sent.
+
+## Execution reliability update
+
+The runner now bounds captured output, cancels whole process groups, and atomically
+publishes terminal results. See the [review and validation evidence](docs/reliability-review.md)
+and [dated hiring/technology rationale](docs/market-review-2026-09-06.md).
+`make test` also re-parses the saved post-change live executions.

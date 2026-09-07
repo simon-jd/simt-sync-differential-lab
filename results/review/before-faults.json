@@ -1,0 +1,7 @@
+{
+  "unknown_sample_exit": 0,
+  "orphan_running_after_timeout": true,
+  "launch_exception": "FileNotFoundError",
+  "launch_failure_has_result": false,
+  "stale_events_copied": true
+}

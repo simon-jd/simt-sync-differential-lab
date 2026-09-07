@@ -4,6 +4,7 @@ setup:
 	docker build -t simt-differential:dev .
 	bash scripts/container.sh bash scripts/build.sh
 test:
+	python3 scripts/review_evidence.py
 	python3 -m unittest discover -s tests -v
 	python3 scripts/verify_evidence.py
 baseline:

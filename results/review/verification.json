@@ -1,0 +1,8 @@
+{
+  "paired_system_runs": 8,
+  "rtl_unit_runs": 4,
+  "expected_baseline_semantic_failures": 3,
+  "fixed_rtl_cycles": 18555,
+  "fixed_invariant_checks": 50316,
+  "fixed_resets": 312
+}
