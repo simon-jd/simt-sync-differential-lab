@@ -68,3 +68,6 @@ and [dated hiring/technology rationale](docs/market-review-2026-09-06.md).
 
 See the [follow-up completion audit](docs/completion-audit.md) for full live
 matrix/regression replays, stricter identity gates and remaining hardware dependency.
+
+See the [September 7 market and ecosystem review](docs/market-review-2026-09-07.md)
+and [current host validation](results/maintenance-20260907/verification.json).

@@ -1,0 +1,26 @@
+{
+  "frameworks": [
+    "Python unittest",
+    "project offline evidence audits"
+  ],
+  "commands": [
+    "make test"
+  ],
+  "passed": 17,
+  "failed": 0,
+  "skipped": 0,
+  "coverage": {
+    "status": "not_measured",
+    "value": null
+  },
+  "environment": {
+    "kind": "local_host",
+    "python": "3.14.4",
+    "os": "Linux x86_64"
+  },
+  "executed_at": "2026-09-07T21:58:17.797082+00:00",
+  "scope": "Controlled process/filesystem tests and reparsing saved real simulator evidence; no new full simulator execution in this pass.",
+  "logs": {
+    "host-tests.log": "4297d90733a7ad2d9b22a7f4be9099b8ce04c8825c50fab0b97a15316b4bd7e5"
+  }
+}
