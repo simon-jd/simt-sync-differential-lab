@@ -1,0 +1,14 @@
+Vortex Regression Test: XLEN=32
+check_config_boundary: OK — no sw/ or tests/ file includes VX_config.h
+sw/ ↔ sim/+hw/ boundary check OK
+SimX threading-boundary check passed
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+rootdir: /workspace/build32
+collected 645 items / 637 deselected / 8 selected
+
+ci/test_runner.py ........                                               [100%]
+
+================ 8 passed, 637 deselected in 193.10s (0:03:13) =================
+Regression completed!
+Elapsed Time: 0:03:14

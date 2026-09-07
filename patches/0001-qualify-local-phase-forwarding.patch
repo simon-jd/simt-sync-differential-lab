@@ -1,0 +1,13 @@
+diff --git a/hw/rtl/core/VX_bar_unit.sv b/hw/rtl/core/VX_bar_unit.sv
+index eaebb44..108c653 100644
+--- a/hw/rtl/core/VX_bar_unit.sv
++++ b/hw/rtl/core/VX_bar_unit.sv
+@@ -233,7 +233,7 @@ module VX_bar_unit import VX_gpu_pkg::*; #(
+             if (store_write) begin
+                 store_valids[store_waddr] <= 1'b1;
+             end
+-            phase_r <= store_write ? store_phase_wdata : store_phase_rdata_v;
++            phase_r <= is_rdw_hazard ? store_phase_wdata : store_phase_rdata_v;
+         end
+         store_waddr <= store_raddr;
+     end

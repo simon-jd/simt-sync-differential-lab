@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/vortexgpgpu/vortex.git",
+  "commit": "bba80f8de208f867a173b587998ed5be9cefd1b4",
+  "toolchain_rev": "v3.0.1",
+  "submodules": [
+    " b1befdb36df8af7ac9e2c96acaf81957aab5d107 third_party/cocogfx (b1befdb)",
+    " 79e453139072df42c9ec8f697132ba485d74e23d third_party/cvfpu (79e4531)",
+    " 6aeee85d0a34fedc06c14f04fd6363c9f7b4eeea third_party/cvfpu/src/common_cells (6aeee85)",
+    " 86e1f558b3c95e91577c41b2fc452c86b04e85ac third_party/cvfpu/src/fpu_div_sqrt_mvp (86e1f55)",
+    " 28be2d4fbf41b38fc37763bb6e90a1c88f6aaa61 third_party/cvfpu/tb/flexfloat (28be2d4)",
+    " aaf5736dffa521603b681fd5853760c671446c85 third_party/hardfloat (heads/master)",
+    " e62c84a6f0e06566ba6e182d308434b4532068a5 third_party/ramulator (e62c84a)",
+    " b51ef8f3201669b2288104c28546fc72532a1ea4 third_party/softfloat (b51ef8f)"
+  ],
+  "toolchain_commit": "77d122dca09abef40338ecdc2fd68e14e64f857c"
+}

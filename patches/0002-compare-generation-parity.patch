@@ -1,0 +1,13 @@
+diff --git a/sim/simx/barrier_unit.cpp b/sim/simx/barrier_unit.cpp
+index f794e82..23def4c 100644
+--- a/sim/simx/barrier_unit.cpp
++++ b/sim/simx/barrier_unit.cpp
+@@ -97,7 +97,7 @@ bool BarrierUnit::wait(uint32_t bar_id, uint32_t phase, uint32_t wid) {
+   auto bar_index = bar_id & 0x7fffffff;
+ 
+   auto& barrier = barriers_.at(bar_index);
+-  bool wait = (barrier.phase == phase);
++  bool wait = ((barrier.phase & 0x1u) == (phase & 0x1u));
+ 
+   DP(4, "*** Barrier wait: core #" << core_->id() << ", warp #" << wid << " at barrier #" << bar_id << ", wait=" << wait);
+ 

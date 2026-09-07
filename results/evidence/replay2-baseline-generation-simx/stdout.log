@@ -1,0 +1,20 @@
+open device connection
+num_cores=1, num_warps=4, num_threads=4, seed=1, rounds=8
+allocate device memory
+load kernel module
+start device
+download results
+wait for completion
+
+core  warp  early-returns  first(expected,observed)
+  0     0        6            (3,2)
+    core 0 warp 0: EARLY WAIT error: 6 of 8 rounds observed wait returning before the delayed warp arrived; marker (expected=3 observed=2)
+  0     1        6            (3,2)
+    core 0 warp 1: EARLY WAIT error: 6 of 8 rounds observed wait returning before the delayed warp arrived; marker (expected=3 observed=2)
+  0     2        6            (3,2)
+    core 0 warp 2: EARLY WAIT error: 6 of 8 rounds observed wait returning before the delayed warp arrived; marker (expected=3 observed=2)
+generation wait errors: 18
+cleanup
+PERF: instrs=5496, cycles=56785, IPC=0.097
+Found 18 errors!
+FAILED!

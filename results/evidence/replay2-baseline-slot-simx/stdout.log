@@ -1,0 +1,15 @@
+open device connection
+num_cores=1, num_warps=4, num_threads=4, rounds=256
+allocate device memory
+load kernel module
+start device
+download results
+wait for completion
+
+core  warp  missed-flips  first(pre,post)
+  0     0        0            (0,0)
+  0     1        0            (0,0)
+slot phase errors: 0
+cleanup
+PERF: instrs=13520, cycles=65383, IPC=0.207
+PASSED!

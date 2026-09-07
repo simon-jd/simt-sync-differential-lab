@@ -1,0 +1,16 @@
+open device connection
+num_cores=1, num_warps=4, num_threads=4, seed=1, rounds=8
+allocate device memory
+load kernel module
+start device
+download results
+wait for completion
+
+core  warp  early-returns  first(expected,observed)
+  0     0        0            (0,0)
+  0     1        0            (0,0)
+  0     2        0            (0,0)
+generation wait errors: 0
+cleanup
+PERF: instrs=5496, cycles=56785, IPC=0.097
+PASSED!

@@ -1,0 +1,26 @@
+diff --git a/hw/unittest/Makefile b/hw/unittest/Makefile
+index bca7eff..afca2a7 100644
+--- a/hw/unittest/Makefile
++++ b/hw/unittest/Makefile
+@@ -1,4 +1,5 @@
+ all:
++	$(MAKE) -C barrier
+ 	$(MAKE) -C generic_queue
+ 	$(MAKE) -C mem_scheduler
+ 	$(MAKE) -C cache
+@@ -29,6 +30,7 @@ all:
+ 	$(MAKE) -C fdivsqrt_unit
+ 
+ run:
++	$(MAKE) -C barrier run
+ 	$(MAKE) -C generic_queue run
+ 	$(MAKE) -C mem_scheduler run
+ 	$(MAKE) -C cache run
+@@ -125,6 +127,7 @@ run-tcu-dsp:
+ 	$(call tcu_tfr_suite)
+ 
+ clean:
++	$(MAKE) -C barrier clean
+ 	$(MAKE) -C generic_queue clean
+ 	$(MAKE) -C mem_scheduler clean
+ 	$(MAKE) -C cache clean

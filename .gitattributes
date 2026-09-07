@@ -1,0 +1,6 @@
+# Preserve raw evidence and upstream material byte-for-byte for SHA-256 checks.
+results/evidence/** -text -whitespace
+tests/fixtures/** -text -whitespace
+licenses/** -text -whitespace
+patches/** -text -whitespace
+results/*.csv -text whitespace=cr-at-eol

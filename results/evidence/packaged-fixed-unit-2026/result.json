@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "name": "packaged-fixed-unit-2026",
+  "command": [
+    "./barrier",
+    "2026"
+  ],
+  "cwd": "/workspace/build32/hw/unittest/barrier",
+  "timeout_seconds": 30,
+  "exit_code": 0,
+  "status": "pass",
+  "elapsed_host_seconds": 0.007539987564086914,
+  "started_unix": 1788749313.964441,
+  "vortex_commit": "bba80f8de208f867a173b587998ed5be9cefd1b4",
+  "source_patch_sha256": "fa1092bb7ebc979cb51e6d1276b3a0fa9da406ff7273b2bfb0fd0e66b485c846",
+  "input_sha256": {
+    "build32/hw/unittest/barrier/barrier": "ba3e182ceabdb6f5ac483464ab79357cbc9ff58a3c2a92d4d8cb56c0fac3c151",
+    "build32/config.mk": "54e891a45361aae39b37812bfeed80ec94d0825442c13a764f7ee62df7e06916",
+    "build32/sw/VX_config.h": "379a6993e572e4864fb611644cc3d935b13a3632c6222098a07641c457dbf729",
+    "build32/sw/runtime/librtlsim.so": "d2d0c4f8df59c84ceff4747e78914ec6fd1b94b5153dde6800b3080ccff83bf0",
+    "build32/sw/runtime/libsimx.so": "c8f47ffc02b31d429167127a59a8ed058cfd20047d01aba27e2ffdbb9427b3ec",
+    "build32/sw/runtime/libvortex-rtlsim.so": "d7b81b12a5aa9f727aaa16b16b8100823936ac4ecd159a3a6068881ac05bbcdd",
+    "build32/sw/runtime/libvortex-simx.so": "7092637ca2038b8ccea6d05c1a7392383697006dd029d5232c92c25f828e9b76",
+    "build32/sw/runtime/libvortex.so": "71343202637191d93fed7eb222e07486274632afdb1befd49d86add26196812b",
+    "overlays/ci/testcases/sync_semantics.yaml": "c18f6a87dc230d4fd3261d5492e7ae1dc78e434ad7f9612a57d0ddb56afa3a01",
+    "overlays/hw/unittest/barrier/Makefile": "cd784e59a037910ce8eff6eb092a610671626522bf72263b5d12b1db9781e372",
+    "overlays/hw/unittest/barrier/VX_barrier_top.sv": "6aba47eeee3319951decf1c191f05a2fa3d34fad7576f7670ad8347e2b255368",
+    "overlays/hw/unittest/barrier/main.cpp": "641c05199423f62647ed644580a95dc1ac7f11b874a94172b24dea656b351ca5",
+    "overlays/tests/regression/bar_generation/Makefile": "9af3024fa8c13b9ff3dea9b412406c301a61e4e3e778f7559cde7596ee7aaf3b",
+    "overlays/tests/regression/bar_generation/common.h": "85e2ca895729daef1bcc32299969f7eee2884bef155a9fa05238f1dbc776e878",
+    "overlays/tests/regression/bar_generation/kernel.cpp": "a8982b9bd2ab30b19005f58147403c7f234a0aace8355831d275c2eab97055ce",
+    "overlays/tests/regression/bar_generation/main.cpp": "a7e27eb857f112e4f8acd794d859bd3978b70f9d945a77e764155488ac09904d"
+  },
+  "stdout_sha256": "63eeb95216285ae0a063d0a2cb54f05ad911762886a793d5c973b4cf4da0f948",
+  "events_sha256": "151b359eb15ce19c4673aa0e554b6ad16f84ef60ab4a38197dd9367f5dafe0c8"
+}

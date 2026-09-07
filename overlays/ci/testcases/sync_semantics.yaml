@@ -1,0 +1,31 @@
+category: sync_semantics
+defaults:
+  xlen: [32]
+  tier: smoke
+tests:
+- id: slot-default
+  via: blackbox
+  drivers: [simx, rtlsim]
+  app: bar_slot_phase
+- id: generation-default
+  via: blackbox
+  drivers: [simx, rtlsim]
+  app: bar_generation
+  args: -n16 -s1
+- id: generation-two-cores
+  via: blackbox
+  drivers: [simx, rtlsim]
+  app: bar_generation
+  args: -n32 -s42
+  shape:
+    cores: 2
+    warps: 2
+    threads: 4
+- id: slot-two-cores
+  via: blackbox
+  drivers: [simx, rtlsim]
+  app: bar_slot_phase
+  shape:
+    cores: 2
+    warps: 2
+    threads: 4

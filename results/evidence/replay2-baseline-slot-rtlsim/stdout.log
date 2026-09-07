@@ -1,0 +1,18 @@
+open device connection
+CONFIGS: num_threads=4, num_warps=4, num_cores=1, num_clusters=1, socket_size=1, local_mem_base=0xffff0000, num_barriers=8
+num_cores=1, num_warps=4, num_threads=4, rounds=256
+allocate device memory
+load kernel module
+start device
+download results
+wait for completion
+
+core  warp  missed-flips  first(pre,post)
+  0     0        0            (0,0)
+  0     1        256            (0,0)
+    core 0 warp 1: SLOT PHASE error: 256 of 256 rounds saw a count-1 arrival fail to advance its own slot's phase (pre=0 post=0)
+slot phase errors: 256
+cleanup
+PERF: instrs=15824, cycles=86797, IPC=0.182
+Found 256 errors!
+FAILED!

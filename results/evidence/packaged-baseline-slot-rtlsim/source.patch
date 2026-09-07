@@ -1,0 +1,115 @@
+diff --git a/hw/unittest/Makefile b/hw/unittest/Makefile
+index bca7eff..afca2a7 100644
+--- a/hw/unittest/Makefile
++++ b/hw/unittest/Makefile
+@@ -1,4 +1,5 @@
+ all:
++	$(MAKE) -C barrier
+ 	$(MAKE) -C generic_queue
+ 	$(MAKE) -C mem_scheduler
+ 	$(MAKE) -C cache
+@@ -29,6 +30,7 @@ all:
+ 	$(MAKE) -C fdivsqrt_unit
+ 
+ run:
++	$(MAKE) -C barrier run
+ 	$(MAKE) -C generic_queue run
+ 	$(MAKE) -C mem_scheduler run
+ 	$(MAKE) -C cache run
+@@ -125,6 +127,7 @@ run-tcu-dsp:
+ 	$(call tcu_tfr_suite)
+ 
+ clean:
++	$(MAKE) -C barrier clean
+ 	$(MAKE) -C generic_queue clean
+ 	$(MAKE) -C mem_scheduler clean
+ 	$(MAKE) -C cache clean
+diff --git a/tests/regression/Makefile b/tests/regression/Makefile
+index cccdee5..9dc4801 100644
+--- a/tests/regression/Makefile
++++ b/tests/regression/Makefile
+@@ -13,7 +13,8 @@ TESTS := \
+     sgemm2_dxa sgemm2_tcu sgemm_tcu_wg_dxa sgemm_tcu_wg_sp_dxa        \
+     sgemm2_dxa_mcast sgemm_tcu_wg_dxa_mcast                           \
+     dxa_copy dxa_copy_mcast dxa_kmajor_check                          \
+-    async_barrier async_gbarrier packld wgather wsync quad_lod        \
++    async_barrier async_gbarrier bar_slot_phase bar_generation       \
++    packld wgather wsync quad_lod                                    \
+     occupancy multikernel reopen module_reload single_cta            \
+     vm_test vm_fault
+ 
+diff --git a/third_party/cocogfx b/third_party/cocogfx
+deleted file mode 160000
+index b1befdb..0000000
+--- a/third_party/cocogfx
++++ /dev/null
+@@ -1 +0,0 @@
+-Subproject commit b1befdb36df8af7ac9e2c96acaf81957aab5d107
+diff --git a/third_party/cocogfx b/third_party/cocogfx
+new file mode 120000
+index 0000000..f7ea59e
+--- /dev/null
++++ b/third_party/cocogfx
+@@ -0,0 +1 @@
++../../vortex/third_party/cocogfx
+\ No newline at end of file
+diff --git a/third_party/cvfpu b/third_party/cvfpu
+deleted file mode 160000
+index 79e4531..0000000
+--- a/third_party/cvfpu
++++ /dev/null
+@@ -1 +0,0 @@
+-Subproject commit 79e453139072df42c9ec8f697132ba485d74e23d
+diff --git a/third_party/cvfpu b/third_party/cvfpu
+new file mode 120000
+index 0000000..4912021
+--- /dev/null
++++ b/third_party/cvfpu
+@@ -0,0 +1 @@
++../../vortex/third_party/cvfpu
+\ No newline at end of file
+diff --git a/third_party/hardfloat b/third_party/hardfloat
+deleted file mode 160000
+index aaf5736..0000000
+--- a/third_party/hardfloat
++++ /dev/null
+@@ -1 +0,0 @@
+-Subproject commit aaf5736dffa521603b681fd5853760c671446c85
+diff --git a/third_party/hardfloat b/third_party/hardfloat
+new file mode 120000
+index 0000000..aa4ac2c
+--- /dev/null
++++ b/third_party/hardfloat
+@@ -0,0 +1 @@
++../../vortex/third_party/hardfloat
+\ No newline at end of file
+diff --git a/third_party/ramulator b/third_party/ramulator
+deleted file mode 160000
+index e62c84a..0000000
+--- a/third_party/ramulator
++++ /dev/null
+@@ -1 +0,0 @@
+-Subproject commit e62c84a6f0e06566ba6e182d308434b4532068a5
+diff --git a/third_party/ramulator b/third_party/ramulator
+new file mode 120000
+index 0000000..fbbe831
+--- /dev/null
++++ b/third_party/ramulator
+@@ -0,0 +1 @@
++../../vortex/third_party/ramulator
+\ No newline at end of file
+diff --git a/third_party/softfloat b/third_party/softfloat
+deleted file mode 160000
+index b51ef8f..0000000
+--- a/third_party/softfloat
++++ /dev/null
+@@ -1 +0,0 @@
+-Subproject commit b51ef8f3201669b2288104c28546fc72532a1ea4
+diff --git a/third_party/softfloat b/third_party/softfloat
+new file mode 120000
+index 0000000..5096945
+--- /dev/null
++++ b/third_party/softfloat
+@@ -0,0 +1 @@
++../../vortex/third_party/softfloat
+\ No newline at end of file

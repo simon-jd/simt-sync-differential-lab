@@ -1,0 +1,66 @@
+diff --git a/hw/rtl/core/VX_bar_unit.sv b/hw/rtl/core/VX_bar_unit.sv
+index eaebb44..108c653 100644
+--- a/hw/rtl/core/VX_bar_unit.sv
++++ b/hw/rtl/core/VX_bar_unit.sv
+@@ -233,7 +233,7 @@ module VX_bar_unit import VX_gpu_pkg::*; #(
+             if (store_write) begin
+                 store_valids[store_waddr] <= 1'b1;
+             end
+-            phase_r <= store_write ? store_phase_wdata : store_phase_rdata_v;
++            phase_r <= is_rdw_hazard ? store_phase_wdata : store_phase_rdata_v;
+         end
+         store_waddr <= store_raddr;
+     end
+diff --git a/hw/unittest/Makefile b/hw/unittest/Makefile
+index bca7eff..afca2a7 100644
+--- a/hw/unittest/Makefile
++++ b/hw/unittest/Makefile
+@@ -1,4 +1,5 @@
+ all:
++	$(MAKE) -C barrier
+ 	$(MAKE) -C generic_queue
+ 	$(MAKE) -C mem_scheduler
+ 	$(MAKE) -C cache
+@@ -29,6 +30,7 @@ all:
+ 	$(MAKE) -C fdivsqrt_unit
+ 
+ run:
++	$(MAKE) -C barrier run
+ 	$(MAKE) -C generic_queue run
+ 	$(MAKE) -C mem_scheduler run
+ 	$(MAKE) -C cache run
+@@ -125,6 +127,7 @@ run-tcu-dsp:
+ 	$(call tcu_tfr_suite)
+ 
+ clean:
++	$(MAKE) -C barrier clean
+ 	$(MAKE) -C generic_queue clean
+ 	$(MAKE) -C mem_scheduler clean
+ 	$(MAKE) -C cache clean
+diff --git a/sim/simx/barrier_unit.cpp b/sim/simx/barrier_unit.cpp
+index f794e82..23def4c 100644
+--- a/sim/simx/barrier_unit.cpp
++++ b/sim/simx/barrier_unit.cpp
+@@ -97,7 +97,7 @@ bool BarrierUnit::wait(uint32_t bar_id, uint32_t phase, uint32_t wid) {
+   auto bar_index = bar_id & 0x7fffffff;
+ 
+   auto& barrier = barriers_.at(bar_index);
+-  bool wait = (barrier.phase == phase);
++  bool wait = ((barrier.phase & 0x1u) == (phase & 0x1u));
+ 
+   DP(4, "*** Barrier wait: core #" << core_->id() << ", warp #" << wid << " at barrier #" << bar_id << ", wait=" << wait);
+ 
+diff --git a/tests/regression/Makefile b/tests/regression/Makefile
+index cccdee5..9dc4801 100644
+--- a/tests/regression/Makefile
++++ b/tests/regression/Makefile
+@@ -13,7 +13,8 @@ TESTS := \
+     sgemm2_dxa sgemm2_tcu sgemm_tcu_wg_dxa sgemm_tcu_wg_sp_dxa        \
+     sgemm2_dxa_mcast sgemm_tcu_wg_dxa_mcast                           \
+     dxa_copy dxa_copy_mcast dxa_kmajor_check                          \
+-    async_barrier async_gbarrier packld wgather wsync quad_lod        \
++    async_barrier async_gbarrier bar_slot_phase bar_generation       \
++    packld wgather wsync quad_lod                                    \
+     occupancy multikernel reopen module_reload single_cta            \
+     vm_test vm_fault
+ 

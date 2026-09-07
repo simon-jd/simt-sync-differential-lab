@@ -1,0 +1,16 @@
+open device connection
+CONFIGS: num_threads=4, num_warps=4, num_cores=1, num_clusters=1, socket_size=1, local_mem_base=0xffff0000, num_barriers=8
+num_cores=1, num_warps=4, num_threads=4, rounds=256
+allocate device memory
+load kernel module
+start device
+download results
+wait for completion
+
+core  warp  missed-flips  first(pre,post)
+  0     0        0            (0,0)
+  0     1        0            (0,0)
+slot phase errors: 0
+cleanup
+PERF: instrs=13520, cycles=64269, IPC=0.210
+PASSED!

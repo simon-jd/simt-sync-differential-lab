@@ -1,0 +1,14 @@
+diff --git a/tests/regression/Makefile b/tests/regression/Makefile
+index cccdee5..9dc4801 100644
+--- a/tests/regression/Makefile
++++ b/tests/regression/Makefile
+@@ -13,7 +13,8 @@ TESTS := \
+     sgemm2_dxa sgemm2_tcu sgemm_tcu_wg_dxa sgemm_tcu_wg_sp_dxa        \
+     sgemm2_dxa_mcast sgemm_tcu_wg_dxa_mcast                           \
+     dxa_copy dxa_copy_mcast dxa_kmajor_check                          \
+-    async_barrier async_gbarrier packld wgather wsync quad_lod        \
++    async_barrier async_gbarrier bar_slot_phase bar_generation       \
++    packld wgather wsync quad_lod                                    \
+     occupancy multikernel reopen module_reload single_cta            \
+     vm_test vm_fault
+ 

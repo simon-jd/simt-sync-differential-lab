@@ -1,0 +1,9 @@
+vendor/
+tools/
+build*/
+.venv/
+__pycache__/
+*.pyc
+artifacts/setup/
+artifacts/runs/
+artifacts/synthesis/
