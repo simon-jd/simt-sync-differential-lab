@@ -1,73 +1,60 @@
 # SIMT Synchronization Differential Lab
 
-An actual Vortex SimX/Verilator comparison focused on local-barrier semantics.
-Explicit state invariants and an independent scoreboard diagnose failures on
-both sides: cross-slot phase forwarding in RTL and premature repeated-generation
-wait completion in SimX.
+A Vortex SimX/RTL differential study of per-slot barrier ownership and generation parity. An independent scoreboard defines the invariant; local patches, minimal counterexamples, seeded resets, and canonical regression evidence remain separately reviewable.
 
-Read the [state contract](docs/semantics.md), [root-cause analysis](docs/root-cause.md),
-and saved [evidence](results/evidence/). The existing upstream slot test is
-attributed; the generation test, seeded block scoreboard, orchestration, and
-analysis extend that coverage.
+## Confirmed qualification results
 
-Measured results:
+These are the user-confirmed results from a separate cloud test run, recorded in the experience bank. The device, workload, timing round, and counting boundaries below remain part of each result. They are distinct from the CPU checks performed in this checkout; cloud-hosted testing does not imply production deployment.
 
-- Both baseline failures reproduced; both repaired kernels pass on both backends.
-- Eight tests pass through Vortex's canonical regression entry point.
-- Independent block test fails on original RTL and passes three reset/interleaving sweeps.
+- Repaired two local barrier-model defects against an independent scoreboard: SimX now decides tokens by generation parity and RTL forwarding only hits the same slot, while the slot reproducer keeps its upstream attribution; of the 8 paired kernel executions (2 kernels × baseline/fixed × SimX/RTL), the slot/RTL and generation/SimX baselines each produced one expected failure, the other two baseline groups were success controls, and all four fixed groups satisfied the participant-set and generation invariants.
 
-The local source changes are reviewable under `patches/`; additive tests live in
-`overlays/`. Vendored source/toolchains and build outputs stay out of Git.
-The Docker base is pinned, source/submodules are locked in `upstream.lock.json`,
-and no physical GPU or FPGA is needed for processor simulation.
+- Ran 52,000 block-level invariant checks (16,400 / 17,400 / 18,200) over 18,555 RTL cycles in a fixed block configuration of 4 barrier slots, 4 participating warps and 3 consecutive generations, using seeds 1, 42 and 2026 (5,900 / 6,200 / 6,455 cycles) with unchanged kernels and identical inputs.
+
+- Drove 312 reset events (104 per seed, rising-edge counted, 1-cycle pulses) as deliberate block state-machine stress, not kernel launches: each assertion clears the local scoreboard, revokes the unfinished generation and re-establishes a legal participant set after release, which accounts for the intentionally short average interval of about 59 cycles.
+
+- Shrank both defect classes to minimal counterexamples: removing the slot comparison let a slot0 release wrongly update slot1 (still reproducing at 2 slots, 2 warps, 2 generations) and removing the parity comparison let a previous-generation token return early (still failing at 2 generations), while execution timeouts were classified as infrastructure failures rather than barrier counterexamples.
+
+- Kept infrastructure errors out of the semantic results by hardening the differential runner with shared-directory admission, fresh event capture and process-group cleanup, and by rerunning the affected paired, canonical and structural checks.
+
+## Implementation and reproduction
+
+| Contract | Implementation |
+|---|---|
+| Paired execution | [scripts/reproduce.py](scripts/reproduce.py) |
+| Independent scoreboard and local tests | [overlays](overlays) |
+| Attributed local model changes | [patches](patches) |
+| Saved model evidence | [results/evidence](results/evidence) |
+
+Run each experiment into a fresh output directory to preserve earlier evidence.
 
 ```bash
-make test        # fast offline integrity and differential-evidence audit
-make setup       # Linux Docker, Python 3.10+, git; fixed source + tools + build
-make baseline    # separate original-model source and build
-make reproduce   # expected original failures and fixed passes, both backends
-make regression  # actual Vortex CI category: 8 cases, about 3 minutes measured
-make synthesis   # SV2V + Yosys hierarchy/synthesis/asserted structural check
+make test
+# CPU-hosted simulator/Verilator reproduction in the pinned container:
+make setup
+make baseline
+make reproduce
+make regression
+make synthesis
 ```
 
-These setup and reproduction entry points have been executed locally. Allow
-several GiB of downloads and tens of GiB of disk for source/toolchain/builds;
-containers use four CPUs and a 16 GiB memory limit. Source and recursive
-submodules are pinned, and the prebuilt toolchain tag is resolved to an immutable
-commit. Apt dependencies are resolved at image-build time. Recorded binary
-hashes identify the measured build, without promising compiler bit-reproducibility.
+Regression entry points: [tests/test_run_case.py](tests/test_run_case.py), [tests/test_evidence.py](tests/test_evidence.py), [tests/test_process_runner.py](tests/test_process_runner.py).
 
-Run directories are immutable. To repeat `make reproduce`, use another prefix:
-`bash scripts/container.sh python3 scripts/reproduce.py second-run`.
-Build both model variants with the same default configuration before paired
-replay; the canonical regression intentionally rebuilds two-core configurations,
-so run `bash scripts/container.sh bash scripts/build.sh` before another default
-replay after `make regression`.
+## Scope and evidence
 
-The eight paired runs include two expected failures on original models.
-The runner records those as `semantic_failure`; the orchestration succeeds only
-when the expected failure/pass matrix is observed. A timeout or infrastructure
-error is never accepted as a counterexample. The three fixed block seeds add
-18,555 cycles, 50,316 checks and 312 resets; original RTL fails at cycle 8.
+The historical checked-in reset sweep has 50,316 checks; the confirmed external round has 52,000. Neither is a physical GPU/FPGA qualification.
 
-CI audits the checked-in evidence on each push. `make regression` and
-`make synthesis` are the heavyweight live checks, distinct from that offline
-audit. The [evidence index](results/evidence/index.json) selects records with
-complete model-library hashes. Hashes detect divergence, not independent
-third-party attestation; rerun the experiments to validate the claims yourself.
+- 312 is a count of block-level reset events (rising edges, 1-cycle pulses) in a small barrier testbench: 104 events per seed over 5,900 / 6,200 / 6,455 cycles, averaged about one every 59 cycles by design. Never present it as a full GPU or kernel launch count; pulse widths are stored separately and nothing here extrapolates to real hardware timing.
 
-Read [resume/interview notes](docs/interview.md) and
-[upstream attribution](THIRD_PARTY.md). No upstream contribution has been sent.
+- Neither SimX nor RTL is a standalone correctness oracle: pass/fail comes from an independent scoreboard that stores per-slot phase and checks the participant-set and generation contract, and two deliberately broken model variants were used to prove the gate reports errors instead of passing everything.
 
-## Execution reliability update
+- The participant set is only within the fixed block (4 slots, 4 warps, 3 generations); a reset terminates the current generation rather than completing synchronization for all participants, and cross-block residency, scheduling preemption and global progress were never in the state model.
 
-The runner now bounds captured output, cancels whole process groups, and atomically
-publishes terminal results. See the [review and validation evidence](docs/reliability-review.md)
-and [dated hiring/technology rationale](docs/market-review-2026-09-06.md).
-`make test` also re-parses the saved post-change live executions.
+- The minimal counterexamples only prove the specified slot and generation contract; do not upgrade them to arbitrary stale-token safety. Execution timeouts are infrastructure failures, not barrier counterexamples.
 
-See the [follow-up completion audit](docs/completion-audit.md) for full live
-matrix/regression replays, stricter identity gates and remaining hardware dependency.
+- The 52,000 invariant checks (16,400 / 17,400 / 18,200) supersede the earlier 50,316 slice; do not infer faults from the difference between rounds.
 
-See the [September 7 market and ecosystem review](docs/market-review-2026-09-07.md)
-and [current host validation](results/maintenance-20260907/verification.json).
+- The slot regression is attributed to upstream Vortex contributors; no claim is made that upstream accepted the local fixes or that anything was FPGA-verified. This is an AI-assisted personal project using local CPU-hosted simulators.
+
+- Historical baseline replays retain 256 RTL missed-phase-flip executions and 18 SimX premature-return executions; the 8 kernel executions are 2 kernels × baseline/fixed × SimX/RTL.
+
+The [previous README](README.historical.md) preserves earlier setup details, design discussion, and historical measurements. Its older counts, splits, versions, and timing cohorts must not be mixed with the confirmed round above. [Result provenance](docs/experience-bank-results.json) retains the confirmed bullet text; [checkout validation](docs/checkout-validation.md) records what was actually rerun here.
